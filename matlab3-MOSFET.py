@@ -1,3 +1,7 @@
+# Tool for visualizing the family of i-v curves for a MOSFET. The user
+# enters the two MOSFET parameters (K, Vto) and then the progarm generates
+# a plot of drain current ID vs. VDS for a range of VGS voltages.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -5,7 +9,7 @@ import matplotlib.pyplot as plt
 ### Variabvles ###
 # program variables to dictact how the program runs
 plot = True
-takeInputs = False
+takeInputs = True
 verbose = False
 
 VgsRange = 10
@@ -18,7 +22,8 @@ V = {}
 
 ### Handling inputs
 if takeInputs:
-    print("Please enter your K value, the transconductance parameter, (mA/V^2): ", end="")
+    print("Please enter a K value, the transconductance parameter, (mA/V^2): ",
+                                                                        end="")
     try:
         K = float(input())
     except:
@@ -41,7 +46,7 @@ else:
 ### Compute curves
 
 ## find various curves with Vgs
-for Vgs in range(1, VgsRange + 1):
+for Vgs in range(0, VgsRange + 1):
     curve = []
 
     ## find curve for varied Vds
